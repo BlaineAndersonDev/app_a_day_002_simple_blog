@@ -103,19 +103,43 @@
     * `rails generate model <Singular_Capitalized_Model_Name> <Lowercase_Attribute_Name>:<Attribute_Type>`
       * Model names can be anything, it just needs to be Capitalized and Plurel.
       * Attribute names can also be anything, as long as its lowercase.
-      * Attribute types are based on MySQL and can be one of a specific list of [options](https://www.w3schools.com/mysql/mysql_datatypes.asp), but for simplicity I use this list:
-        * :binary       Used for UUID's.                              [Format: `###` | Ex: `255` | Min/Max: `0 / 255`]
-        * :boolean      Used for True/False.                          [Format: `0` | Ex: `1` | Min/Max: `0 / 1`]
-        * :date         Used for Dates.                               [Format: `YYYY-MM-DD` | Ex: `9999-12-31`]
-        * :datetime     Used for Dates & Times.                       [Format: `YYYY-MM-DD hh:mm:ss` | Ex: `9999-12-31 23:59:59`]
-        * :decimal      Used for exact point fixed numbers.           [Format: `##.########` | Ex: `12.34567890`]
-        * :float        Used for scientific numeration. Not precise.  [Format: `##.####` | Ex: `12.3456`]
-        * :integer      Used for simple, whole numbers.               [Format: `#####` | Ex: `12345`]
-        * :primary_key  Used for column ID. Automatically added.      [Format: `123` | Ex: `123`]
-        * :string       Used for Usernames, Emails, Passwords.        [Ex: `Username` | Max_Chars: `255`]
-        * :text         Used for Descriptions, Articles, Posts        [Ex: `Very long description...` | Max_Chars: `21,844`]
-        * :time         Used for Time.                                [Format: `hh:mm:ss` | Ex: `10:59:59`]
-        * :timestamp    Used for `created_at` & `updated_at`.         [Format: `YYYY-MM-DD hh:mm:ss` | Ex: `'1970-01-01 00:00:00' UTC`]
+      * Attribute types are based on MySQL and can be one of a specific list of [options](https://www.w3schools.com/mysql/mysql_datatypes.asp), but for simplicity I use my own list:
+        * **:binary**
+          * Used for UUID's.                              
+          * [Format: `###` | Ex: `255` | Min/Max: `0 / 255`]
+        * **:boolean**
+          * Used for True/False.
+          * [Format: `0` | Ex: `1` | Min/Max: `0 / 1`]
+        * **:date**
+          * Used for Dates.
+          * [Format: `YYYY-MM-DD` | Ex: `9999-12-31`]
+        * **:datetime**
+          * Used for Dates & Times.
+          * [Format: `YYYY-MM-DD hh:mm:ss` | Ex: `9999-12-31 23:59:59`]
+        * **:decimal**
+          * Used for exact point fixed numbers.
+          * [Format: `##.########` | Ex: `12.34567890`]
+        * **:float**
+          * Used for scientific numeration. Not precise.
+          * [Format: `##.####` | Ex: `12.3456`]
+        * **:integer**
+          * Used for simple, whole numbers.
+          * [Format: `#####` | Ex: `12345`]
+        * **:primary_key**
+          * Used for column ID. Automatically added.
+          * [Format: `123` | Ex: `123`]
+        * **:string**
+          * Used for Usernames, Emails, Passwords.
+          * [Ex: `Username` | Max_Chars: `255`]
+        * **:text**
+          * Used for Descriptions, Articles, Posts
+          * [Ex: `Very long description...` | Max_Chars: `21,844`]
+        * **:time**
+          * Used for Time.
+          * [Format: `hh:mm:ss` | Ex: `10:59:59`]
+        * **:timestamp**
+          * Used for `created_at` & `updated_at`.
+          * [Format: `YYYY-MM-DD hh:mm:ss` | Ex: `'1970-01-01 00:00:00' UTC`]
   * 
     
   ### **Generate the Controller:**
