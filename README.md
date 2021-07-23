@@ -224,7 +224,7 @@
     * To see our new Index page in action, run the server with `rails s` and navigate in your browser to `http://localhost:3000/articles`.
   
   ### **Show: View & Endpoint**
-  > The Show page is for displaying an individual piece of data to the User. This is achieved by using the Controller to search for an return a specific Article, usually by the Article's ID.
+  > The Show page is for displaying an individual piece of data to the User. This is achieved by using the Controller to search for and to return a specific Article, usually by the Article's ID.
   * Inside the Article Controller (`app/controllers/articles_controller.rb`) let's make the **Show** endpoint:
     ```
     class ArticlesController < ApplicationController
