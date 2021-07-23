@@ -1,7 +1,7 @@
 # App A Day
 ### 002 - Simple Blog (The Re-Iterating)
 
-## [Step 1](#app-creation-route-generation) | App Creation, Gemfile Updates & Route Generation.
+## [Step 1](#app-creation-gemfile-database) | App Creation, Gemfile Updates & Database Generation.
   ### **Generate a new Rails Project:**
   * `rails new simple_blog -t -d postgresql -b`
       * `-t` disallows test autogeneration.
@@ -59,20 +59,45 @@
     gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
     ```
-  * **Commit 'Update Gemfile' and Push to Github**
+    * In Terminal (Or Windows Command Line) run `bundle install`
+    * **Commit 'Update Gemfile' and Push to Github**
+  ### **Generate our PostgreSQL Database:**
+    * For the App to run properly we need a connected Database.
+    * Since we are using PostgreSQL, you need to have it installed on your local machine.
+      * Link to [Download](https://www.postgresql.org/download/) options.
+    * Once it's installed, in Terminal (Or Windows Command Line) run `rails db:create`
+      * It should return something like this:
+        ```
+        Created database 'simple_blog_002_development'
+        Created database 'simple_blog_002_test'
+        ```
+      * *Useful commands are `rails db:drop` to delete a database or `rails db:reset` to drop and create the database in one command.*
+  ### **Verify the Server Runs:**
+    * In Terminal run `rails server`
+      * *To turn off a server press CTRL+C with the terminal window selected.*
 
-  ### **Generate Routes:**
+## [Step 2](#) | Routes & the MVC (Model, View, Controller).
+  ### **Generate the Routes:**
+  > Routes connect the application. They allow us to specify what endpoint we want to go, either To or From the View. We can also send along information (such as an instance variable).
   * 
   * 
+  
+  ### **Generate the Model:**
+  > ______________
   * 
   * 
+    
+  ### **Generate the Controller:**
+  > ______________
   * 
   * 
+    
+  ### **Generate the Views:**
+  > ______________
   * 
   * 
-  * 
-  * 
-  * 
+
+
   * 
   * 
   * 
