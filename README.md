@@ -79,8 +79,22 @@
 ## [Step 2](#) | Routes & the MVC (Model, View, Controller).
   ### **Generate the Routes:**
   > Routes connect the application. They allow us to specify what endpoint we want to go, either To or From the View. We can also send along information (such as an instance variable).
-  * 
-  * 
+  * Open `config/routes.rb` and add `resources :articles`:
+    ```
+    Rails.application.routes.draw do
+      resources :articles
+    end
+    ```
+    * *This added all 7 conventional routes used in an app, specifically: Index, New, Create, Show, Edit, Update & Destroy*
+    * *We can add only specific routes if we wanted (we don't) but for posterity it would look like this:*
+      ```
+      resources :articles, only: [:index, :show]
+      ```
+      *Or
+      ```
+      resources :articles, except: [:create, :new, :edit, :update, :destroy]
+      ```
+      * *In both of these cases, we end up with only two routes: `index` & `show`.*
   
   ### **Generate the Model:**
   > ______________
