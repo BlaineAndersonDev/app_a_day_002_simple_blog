@@ -181,93 +181,252 @@
     * While these are all useful files, the only one we want to work with for now is the `articles_controller.rb`, so go ahead and open that file. 
 
   ### **Index: View & Endpoint**
-  > The Index is something like the "home" page. This usually shows all Articles and allows a user to Open, Create, Edit or Destroy an Article.
-  * Inside the Article Controller (`app/controllers/articles_controller.rb`) let's make the **Index** endpoint:
-    ```
-    class ArticlesController < ApplicationController
-      def index 
-        @articles = Article.all
+  > The Index Endpoint & View is something like the "home" page. This usually shows all Articles and allows a user to Open, Create, Edit or Destroy an Article.
+  * **Endpoint**
+    * Inside the Article Controller (`app/controllers/articles_controller.rb`) let's make the **Index** endpoint:
+      ```
+      class ArticlesController < ApplicationController
+        def index 
+          @articles = Article.all
+        end
       end
-    end
-    ```
-    * Technical Information:
-      * `@articles` is an instance variable, which means we can fill it with information and pass a it as an object to our associated Index View. These are defined by the `@`.
-      * `Article.all` communicates with out database and asks it for all the Articles we have saved to be put into our `@articles` instance variable (which is currenly none).
-  * **Now we need to create our View.**
-  * In Terminal use: `touch app/views/articles/index.html.erb`, then open and paste in the following:
-    ```
-    <h1>The <strong>Big List</strong> of all Articles</h1>
+      ```
+      * Technical Information:
+        * `@articles` is an instance variable, which means we can fill it with information and pass a it as an object to our associated Index View. These are defined by the `@`.
+        * `Article.all` communicates with out database and asks it for all the Articles we have saved to be put into our `@articles` instance variable (which is currenly none).
+  * **View**
+    * In Terminal use: `touch app/views/articles/index.html.erb`, then open and paste in the following:
+      ```
+      <h1>The <strong>Big List</strong> of all Articles</h1>
 
-    <table>
-      <tr>
-        <th>Title</th>
-        <th>Author</th>
-        <th>Text</th>
-        <th>Created At</th>
-      </tr>
-
-      <% @articles.each do |article| %>
+      <table>
         <tr>
-          <th><%= article.title %></th>
-          <th><%= article.author %></th>
-          <th><%= article.text %></th>
-          <th><%= article.created_at %></th>
-          <th><%= link_to "Show", article_path(article) %></th>
-          <th><%= link_to "Edit", edit_article_path(article) %></th>
-          <th><%= link_to "Destroy", article_path(article), method: :delete, data: {confirm: "Are you sure?" } %></th>
+          <th>Title</th>
+          <th>Author</th>
+          <th>Text</th>
+          <th>Created At</th>
         </tr>
-      <% end %>
-    </table>
-    ```
+
+        <% @articles.each do |article| %>
+          <tr>
+            <th><%= article.title %></th>
+            <th><%= article.author %></th>
+            <th><%= article.text %></th>
+            <th><%= article.created_at %></th>
+            <th><%= link_to "Show", article_path(article) %></th>
+            <th><%= link_to "Edit", edit_article_path(article) %></th>
+            <th><%= link_to "Destroy", article_path(article), method: :delete, data: {confirm: "Are you sure?" } %></th>
+          </tr>
+        <% end %>
+      </table>
+      ```
       * Technical Information:
         * The Show, Edit, and Destroy buttons wont do anything at the moment, but they will later on.
+  * **Check it out**
     * To see our new Index page in action, run the server with `rails s` and navigate in your browser to `http://localhost:3000/articles`.
   
   ### **Show: View & Endpoint**
-  > The Show page is for displaying an individual piece of data to the User. This is achieved by using the Controller to search for and to return a specific Article, usually by the Article's ID.
-  * Inside the Article Controller (`app/controllers/articles_controller.rb`) let's make the **Show** endpoint:
-    ```
-    class ArticlesController < ApplicationController
-      ...
-      def show
-        @article = Article.find(params[:id])
+  > The Show Endpoint & View is for displaying an individual piece of data to the User. This is achieved by using the Controller to search for and to return a specific Article, usually by the Article's ID.
+  * **Endpoint**
+    * Inside the Article Controller (`app/controllers/articles_controller.rb`) let's make the **Show** endpoint:
+      ```
+      class ArticlesController < ApplicationController
+        ...
+        def show
+          @article = Article.find(params[:id])
+        end
       end
-    end
-    ```
-    * Technical Information:
-      * Instead of `@articles` we are using the singular version: `@article`. It is exactly the same as before, but convention requires we make it singular since we are dealing with a single Article instead of multiple.
-      * `Article.find(params[:id])` also uses Active Record to communicate with our database, asking it for a specific Article with the `id` we provide via the Index View. 
-        * In our Index View we have the line: `<%= link_to "Show", article_path(article) %>`.
-        * This is broken down into Rails convention, specifically we use `link_to` to generate a link directly to that specific Article. `article_path(article)` is the Rails convention (and automatic) way of saying this is a Show Route, and will automatically send a user who clicks on it to the Show View displaying that specific Article.
-  * **Now we need to create our View.**
-  * In Terminal use: `touch app/views/articles/show.html.erb`, then open and paste in the following:
-    ```
-    <h1>Show Page</h1>
+      ```
+      * Technical Information:
+        * Instead of `@articles` we are using the singular version: `@article`. It is exactly the same as before, but convention requires we make it singular since we are dealing with a single Article instead of multiple.
+        * `Article.find(params[:id])` also uses Active Record to communicate with our database, asking it for a specific Article with the `id` we provide via the Index View. 
+          * In our Index View we have the line: `<%= link_to "Show", article_path(article) %>`.
+          * This is broken down into Rails convention, specifically we use `link_to` to generate a link directly to that specific Article. `article_path(article)` is the Rails convention (and automatic) way of saying this is a Show Route, and will automatically send a user who clicks on it to the Show View displaying that specific Article.
+  * **View**
+    * In Terminal use: `touch app/views/articles/show.html.erb`, then open and paste in the following:
+      ```
+      <h1>Show Page</h1>
 
-    <p>
-      <strong>Title:</strong>
-      <%= @article.title %>
-    </p>
+      <p>
+        <strong>Title:</strong>
+        <%= @article.title %>
+      </p>
 
-    <p>
-      <strong>Author:</strong>
-      <%= @article.author %>
-    </p>
+      <p>
+        <strong>Author:</strong>
+        <%= @article.author %>
+      </p>
 
-    <p>
-      <strong>Text:</strong>
-      <%= @article.text %>
-    </p>
+      <p>
+        <strong>Text:</strong>
+        <%= @article.text %>
+      </p>
 
-    <p>
-      <strong>Time:</strong>
-      <%= @article.created_at %>
-    </p>
-    ```
+      <p>
+        <strong>Time:</strong>
+        <%= @article.created_at %>
+      </p>
+      ```
+  * **Check it out**
     * To see any of our new Show pages in action, run the server with `rails s` and navigate in your browser to `http://localhost:3000/articles` and click on the Show button for any Article.
 
+  ### **New: View & Endpoint**
+  > The New Endpoint creates a 'new' instance variable, which is sent to the Edit View. This object is manipulated by the User via a form, and when submitted, is sent to the Create Endpoint to generate a new Database entry.
+  * **Endpoint**
+    * Inside the Article Controller (`app/controllers/articles_controller.rb`) let's make the **New** endpoint:
+      ```
+      class ArticlesController < ApplicationController
+        ...
+        def new 
+          @article = Article.new
+        end
+      end
+      ```
+      * Technical Information:
+        * `Article.new` creates an unsaved Article Object that we can allow the user to fill using a form.
+  * **View**
+    * Because we will be reusing our input form for both the "New" and "Edit" Views, we'll be making a Rails Partial (which is fancy for saying we will make a bit of reusable code).
+    * First, lets make the Form itself:
+      * Partials are specified by added an underscore to the beginning of the filename, so let's make one:
+      * In Terminal use: `touch app/views/articles/_form.html.erb`, then open and paste in the following:
+        ```
+        <%= form_with model: @article do |f| %>
 
+          <p>
+            <%= f.label :title %><br>
+            <%= f.text_field :title %>
+          </p>
 
+          <p>
+            <%= f.label :author %><br>
+            <%= f.text_field :author %>
+          </p>
+
+          <p>
+            <%= f.label :text %><br>
+            <%= f.text_field :text %>
+          </p>
+
+          <p>
+            <%= f.submit %>
+          </p>
+
+        <% end %>
+        ```
+        * Technical Information:
+          * `form_with model: @article do |f|`
+            * `form_with` is the current conventional way to create Rails-ified forms. Depreciated (but still funcationl) form options include `form_tag` and `form_for`. That being said, `form_with` is the simplest implementation.
+            * The model is the only thing that needs to be specified (`model: @article`) which allows Rails to automagically generate the proper path for "New" and "Edit" Endpoints. 
+    * Now let's make the actual View:
+      * In Terminal use: `touch app/views/articles/new.html.erb`, then open and paste in the following:
+        ```
+        <h1>New Article<h1>
+        <%= render "form" %>
+        ```
+        * Technical Information:
+          * Our file is named `_form.html.erb` but we only said to render `form`? Whats going on?
+          * Don't worry! Rails is smart only needs the name of the View we want to render. It also doesnt need the underscore included because this is such a normal occourance. Keeping it simple is the Rails way!
+  * **Check it out**
+    * While we can't actually save anything without the "Create" endpoint, we can still check out the form we'll be using shortly at `http://localhost:3000/articles/new`.
+
+  ### **Create: View & Endpoint**
+  > The Create Endpoint & View intake the Users provided information from the "New" View and proceed to generate a new database entry. Once complete, the "Create" endpoint send the User to the "Show" view to see their "Created" database entry.
+  * **Endpoint**
+    * Inside the Article Controller (`app/controllers/articles_controller.rb`) let's make the **Create** endpoint:
+      ```
+      class ArticlesController < ApplicationController
+        ...
+        def create 
+          @article = Article.new(article_params)
+          @article.save
+          redirect_to @article
+        end
+      end
+      ```
+      * Technical Information:
+        * Like the "New" endpoint, we have `Article.new`. Unlike it however, is the attached `(article_params)` which we'll get to in a moment.
+          * `@article.save` attempts to save the `@article` instance variable to our database. On failure, it will error out, but on success it will redirect the User (`redirect_to @article`) to the "Show" View for the created article.
+          * Back to the `article_params`, which refers to a specific set of allowed and/or required parameters that we specify in the controller under a special section called `private`. Let's do that now:
+  * **Private Method**
+    * The `private` keyword in our controller says that only the actual endpoints can access it. No outside interation at all. This helps keep our backend safe and provides a way for us to verify what information we allow to be saved to our database.
+    * The `private` methods section should be at the bottom of the Controller, just before the final `end`. Additionally, all methods below this should be indented. Paste in the following:
+      ```
+      private
+        def article_params 
+          params.require(:article).permit(:title, :author, :text)
+        end
+      ```
+      * The line `params.require(:article).permit(:title, :author, :text)` *requires* that we recieve an object containing a `title`, `author` and `text` attribute intended for the `article` Model.
+        * Don't worry too much if this feels overwhelming, as long as you include all the attributes here that you added to your model, it will work just fine.
+  * **View**
+    * The "Create" Endpoint does not use a View. As soon as the information has been input into our database the user is sent to the "Show" view we created earlier with the Article they just created as the instance variable (`@article`).
+  * **Check it out**
+    * Now we can go to `http://localhost:3000/articles/new`, fill it out, submit it and we'll be taken to a show page featuring the new Article. Give it a shot!
+    * After creating an Article, you can also see it in the list of all Articles at `http://localhost:3000/articles`.
+
+  ### **Edit: View & Endpoint**
+  > The Edit Endpoint & View is similiar to our "New" Endpoint and View, but allows a User to alter an existing Article and submit the changes to the "Update" Endpoint to save them permenantly.
+  * **Endpoint**
+    * Inside the Article Controller (`app/controllers/articles_controller.rb`) let's make the **Edit** endpoint:
+      ```
+      class ArticlesController < ApplicationController
+        ...
+        def edit
+          @article = Article.find(params[:id])
+        end
+        ...
+      end
+      ```
+      * Technical Information:
+        * Just like the "Show" Endpoint, we find the Article using it's `:id`. In this case, we're sending it to our "Edit' View to allow the User to alter it.
+        * When the User is finished, they'll submit the Article to our "Update" Endpoint to be updated in the database.
+  * **View**
+    * We'll be using the exact same form for our "Edit" View that we used for our "New" View!
+    * In Terminal use: `touch app/views/articles/edit.html.erb`, then open and paste in the following:
+        ```
+        <h1>Edit Article<h1>
+        <%= render "form" %>
+        <%= link_to "Back", articles_path %>
+        ```
+    * Because Rails is so smart, it will automatically send the User altered Article to the "Update" Endpoint on submit (ya know, once we make it.).
+    * We also added the line `<%= link_to "Back", articles_path %>` to allow Users to return to the "Index" View in case they sudden don't want to "Edit" the Article.
+  * **Check it out**
+    * We won't be able to actually "Update" the Article without the aptly named "Update" Endpoint, but we can still check out the "Edit" View at `http://localhost:3000/articles/1/edit`.
+      * *This URL assumes you havent somehow deleted the original Article with an `:id` of 1.* 
+
+  ### **Update: View & Endpoint**
+  > The Update Endpoint & View 
+  * **Endpoint**
+    * Inside the Article Controller (`app/controllers/articles_controller.rb`) let's make the **Update** endpoint:
+      ```
+      class ArticlesController < ApplicationController
+        ...
+
+      end
+      ```
+      * Technical Information:
+        * 
+  * **View**
+    * 
+  * **Check it out**
+    * 
+
+  ### **Destroy: View & Endpoint**
+  > The Destroy Endpoint & View 
+  * **Endpoint**
+    * Inside the Article Controller (`app/controllers/articles_controller.rb`) let's make the **Destroy** endpoint:
+      ```
+      class ArticlesController < ApplicationController
+        ...
+
+      end
+      ```
+      * Technical Information:
+        * 
+  * **View**
+    * 
+  * **Check it out**
+    * 
 
 
 
