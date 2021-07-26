@@ -395,38 +395,58 @@
       * *This URL assumes you havent somehow deleted the original Article with an `:id` of 1.* 
 
   ### **Update: View & Endpoint**
-  > The Update Endpoint & View 
+  > The Update Endpoint takes the provided information from our "Edit" View and updates the database entry based on `:id`. On success the User is taken to a "Show" View of the updated Article.
   * **Endpoint**
     * Inside the Article Controller (`app/controllers/articles_controller.rb`) let's make the **Update** endpoint:
       ```
       class ArticlesController < ApplicationController
         ...
-
+        def update
+          @article = Article.find(params[:id])
+          if @article.update(article_params)
+            redirect_to @article
+          else
+            render 'edit'
+          end
+        end
+        ...
       end
       ```
       * Technical Information:
-        * 
+        * Here we obtain the same Article using the provided `:id` again, after which we enter into an If...Then statement:
+          * If the Instance Variable containing the Article we just looked up is successfully updated using the information the User provided in `article_params` then we want to redirect the User to the "Show" page of that Article.
+          * If the Instance Variable fails to update (usually due to missing information) then we want to send the user to the "Edit" View via `render 'edit'` to try again.
   * **View**
-    * 
+    * The "Update" Endpoint does not use a View, but works similar to how "Create" does.
   * **Check it out**
-    * 
+    * We can now go to `http://localhost:3000/articles/1/edit`, alter it's information, submit it and we'll be taken to a show page featuring the updated Article. Give it a shot!
+    * After updating an Article, you can also see it updated in the list of all Articles at `http://localhost:3000/articles`.
 
   ### **Destroy: View & Endpoint**
-  > The Destroy Endpoint & View 
+  > The Destroy Endpoint does exactly what it implies: It removes the specified Article from existence.
   * **Endpoint**
     * Inside the Article Controller (`app/controllers/articles_controller.rb`) let's make the **Destroy** endpoint:
       ```
       class ArticlesController < ApplicationController
         ...
-
+        def destroy
+          @article = Article.find(params[:id])
+          @article.destroy
+          redirect_to articles_path
+        end
+        ...
       end
       ```
       * Technical Information:
-        * 
+        * As per the usual now, this Endpoint finds the specified Article using an `:id`.
+        * The it proceeds to Obliterate the Article from the database: `@article.destroy`.
+        * Afterwards it sends the User back to the "Index" View.
   * **View**
-    * 
+    * The "Destroy" Endpoint does not use a View. On success it sends the User back to the "Index" View.
+    * For reference, when you attempt to destroy an Article, the browser produces a dropdown window asking "Sure you wanna destroy?". This is from our "Index" view, specificlly the line: `data: {confirm: "Are you sure?" }`.
+    * You can remove that part to remove the confirmation if you like.
   * **Check it out**
-    * 
+    * Open up the list of all Articles at `http://localhost:3000/articles` and click the "destroy" button on any given one
 
 
 
@@ -438,61 +458,6 @@
 
 
 
-
-
-
-      * **New**
-        > When a User chooses to create a new Article, they open the "New" view, which is almost always a form.The New endpoint in our controller is called before they see the form and creates an empty instance variable that a User fills up. When the user is done, they will press a "Submit" button send it to the Create endpoint.
-        * 
-          ```
-          #Creates `@article`(Instance Variable) with provided information.
-          #Requires all params as stated in the private method `article_params`.
-          @article = Article.new(article_params)
-
-          # If `@article` is saved into the database redirect to view `show.html.erb`.
-          @article.save
-          redirect_to @article
-          ```
-        * Terms:
-          * `article_params`: 
-      * **Create**
-        > 
-        * 
-          ```
-          ```
-        *
-      * **Show**
-        > 
-        * 
-          ```
-          ```
-        * 
-      * **Edit**
-        > 
-        * 
-          ```
-          ```
-        * 
-      * **Update**
-        > 
-        * 
-          ```
-          ```
-        * 
-      * **Destroy**
-        > 
-        * 
-          ```
-          ```
-        * 
-  * `rails generate controller Articles index new create show edit update destroy`
-  * `rails destroy controller Articles index new create show edit update destroy`
-  * `rails generate controller Articles`
-  * 
-    
-  ### **Generate the Views:**
-  > ______________
-  * 
   * 
 
 
