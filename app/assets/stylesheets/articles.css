@@ -1,0 +1,134 @@
+/* CSS Reset: http://meyerweb.com/eric/thoughts/2007/05/01/reset-reloaded/ */
+/* ---------------------------------------------- */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-weight: inherit;
+	font-style: inherit;
+	font-size: 100%;
+	font-family: inherit;
+	vertical-align: baseline;
+}
+/* remember to define focus styles! */
+:focus {
+	outline: 0;
+}
+body {
+	line-height: 1;
+	color: black;
+	background: white;
+}
+ol, ul {
+	list-style: none;
+}
+/* tables still need 'cellspacing="0"' in the markup */
+table {
+	border-collapse: separate;
+	border-spacing: 0;
+}
+caption, th, td {
+	text-align: left;
+	font-weight: normal;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: "";
+}
+blockquote, q {
+	quotes: "" "";
+}
+/* ---------------------------------------------- */
+h1 {
+  font-size: 2.5em;
+  display: flex;
+  justify-content: center;
+  align-content: middle;
+  padding: 10px;
+}
+
+div {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  width: 100%;
+  background-color: purple;
+}
+div.header_container {
+  background-color: red;
+}
+div.article_container {
+  flex-flow: column wrap;
+  background-color: green;
+
+}
+div.individual_article {
+  background-color: aliceblue;
+}
+
+p {
+  flex: 1 1;
+  margin: 3px;
+}
+p.text {
+  flex: 2 2;
+    /* These three styles allow for truncated text. */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+p.header {
+  font-weight: bold;
+}
+div.button_container {
+  flex: 0 1;
+  background-color: inherit;
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+}
+a:link, a:visited { 
+  border-radius: 12px;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  color: black;
+  background-color: white;
+}
+a.show_button:link, a.show_button:visited {
+  color: black;
+  border: 2px solid #4CAF50;
+}
+a.edit_button:link, a.edit_button:visited {
+  color: black;
+  border: 2px solid #FFD700;
+}
+a.destroy_button:link, a.destroy_button:visited {
+  color: black;
+  border: 2px solid #F00;
+}
+a.show_button:hover, a.show_button:active {
+  color: black;
+  background-color: #4CAF50;
+}
+a.edit_button:hover, a.edit_button:active {
+  color: black;
+  background-color: #FFD700;
+}
+a.destroy_button:hover, a.destroy_button:active {
+  color: black;
+  background-color: #F00;
+}
