@@ -47,6 +47,18 @@ blockquote, q {
 	quotes: "" "";
 }
 /* ---------------------------------------------- */
+/* https://cdn.pixabay.com/photo/2015/09/09/16/05/forest-931706_960_720.jpg */
+section {
+  max-width: 80%;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-flow: column wrap;
+  margin: auto;
+  margin-top: 10px;
+  border: 3px black solid;
+  box-shadow: 5px 10px #888888;
+}
 h1 {
   font-size: 2.5em;
   display: flex;
@@ -54,7 +66,6 @@ h1 {
   align-content: middle;
   padding: 10px;
 }
-
 div {
   display: flex;
   justify-content: center;
@@ -68,7 +79,10 @@ div.header_container {
 div.article_container {
   flex-flow: column wrap;
   background-color: green;
-
+}
+div.individual_article img {
+  max-width: 100px;
+  max-height: 100px;
 }
 div.individual_article {
   background-color: aliceblue;
@@ -114,21 +128,21 @@ a.show_button:link, a.show_button:visited {
 }
 a.edit_button:link, a.edit_button:visited {
   color: black;
-  border: 2px solid #FFD700;
+  border: 2px solid #DFBD02;
 }
 a.destroy_button:link, a.destroy_button:visited {
   color: black;
   border: 2px solid #F00;
 }
 a.show_button:hover, a.show_button:active {
-  color: black;
+  color: white;
   background-color: #4CAF50;
 }
 a.edit_button:hover, a.edit_button:active {
-  color: black;
-  background-color: #FFD700;
+  color: white;
+  background-color: #DFBD02;
 }
 a.destroy_button:hover, a.destroy_button:active {
-  color: black;
+  color: white;
   background-color: #F00;
 }

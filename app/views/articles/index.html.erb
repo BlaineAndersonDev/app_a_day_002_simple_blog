@@ -1,5 +1,6 @@
 <%= stylesheet_link_tag "articles.css" %>
-<h1>The Big List of all Articles</h1>
+<section>
+  <h1>The Big List of all Articles</h1>
 
   <div class="header_container">
     <p class="title header">Title</p>
@@ -13,6 +14,7 @@
   <div class="article_container">
     <% @articles.each do |article| %>
       <div class="individual_article">
+      <%= link_to image_tag("https://cdn.pixabay.com/photo/2015/09/09/16/05/forest-931706_960_720.jpg", :border => 0, :alt => '', :title => ''), article_path(article), :class => 'image' %>
         <p class="title"><%= article.title %></p>
         <p class="author"><%= article.author %></p>
         <p class="text"><%= article.text %></p>
@@ -25,3 +27,4 @@
       </div>
     <% end %>
   </div>
+</section>
