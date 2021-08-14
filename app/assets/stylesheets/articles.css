@@ -47,61 +47,113 @@ blockquote, q {
 	quotes: "" "";
 }
 /* ---------------------------------------------- */
-/* https://cdn.pixabay.com/photo/2015/09/09/16/05/forest-931706_960_720.jpg */
 section {
-  max-width: 80%;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-content: center;
   flex-flow: column wrap;
   margin: auto;
   margin-top: 10px;
-  border: 3px black solid;
-  box-shadow: 5px 10px #888888;
-}
-h1 {
-  font-size: 2.5em;
-  display: flex;
-  justify-content: center;
-  align-content: middle;
-  padding: 10px;
 }
 div {
   display: flex;
   justify-content: center;
   align-content: center;
   width: 100%;
-  background-color: purple;
 }
-div.header_container {
-  background-color: red;
-}
-div.article_container {
-  flex-flow: column wrap;
-  background-color: green;
-}
-div.individual_article img {
-  max-width: 100px;
-  max-height: 100px;
-}
-div.individual_article {
-  background-color: aliceblue;
+h1 {
+  min-width: 100%;
+  font-size: 2.5em;
+  display: flex;
+  justify-content: center;
+  align-content: middle;
+  padding: 10px;
 }
 
-p {
-  flex: 1 1;
-  margin: 3px;
+.article_container {
+  flex-flow: column wrap;
+  margin: 10px;
 }
-p.text {
-  flex: 2 2;
+.article_headers {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-flow: row wrap;
+  margin: auto;
+  border-top: 1px solid lightgray;
+  margin-top: 15px;
+  padding-top: 15px;
+}
+.header_title {
+  min-width: 100%;
+  font-size: 1.75em;
+  display: flex;
+  justify-content: center;
+  align-content: middle;
+}
+.article_headers p {
+  width: 100%;
+  text-align: center;
+  font-size: 0.80em;
+}
+.header_info {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-content: baseline;
+  flex-flow: row nowrap;
+  margin: 15px;
+}
+.header_divider {
+  justify-content: center;
+  flex: 0 1;
+}
+.header_date {
+  display: flex;
+  justify-content: flex-end;
+  flex: 1 1;
+}
+.header_user {
+  display: flex;
+  justify-content: flex-start;
+  flex: 1 1;
+}
+
+.article_image {
+  margin: 0;
+  padding: 15px;
+  border-radius: 0;
+}
+.article_image img {
+  min-width: 80%;
+  max-width: 80%;
+  min-height: auto;
+  max-height: auto;
+}
+
+.article_focus {
+  padding: 20px;
+  margin: 20px;
+  border: 1px solid red;
+  display: flex;
+  justify-content: center;
+  align-content: baseline;
+  width: 100%;
+}
+.text {
+  flex: 1 1;
+  padding: 5px;
+  width: 80%;
     /* These three styles allow for truncated text. */
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
-p.header {
-  font-weight: bold;
-}
+
+
+
 div.button_container {
   flex: 0 1;
   background-color: inherit;

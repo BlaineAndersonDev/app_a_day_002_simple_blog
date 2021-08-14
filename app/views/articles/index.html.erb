@@ -2,29 +2,31 @@
 <section>
   <h1>The Big List of all Articles</h1>
 
-  <div class="header_container">
-    <p class="title header">Title</p>
-    <p class="author header">Author</p>
-    <p class="text header">Text</p>
-    <p class="created_at header">Created At</p>
-    <p class="header"></p>
-    <p class="header"></p>
-    <p class="header"></p>
-  </div>
   <div class="article_container">
     <% @articles.each do |article| %>
-      <div class="individual_article">
-      <%= link_to image_tag("https://cdn.pixabay.com/photo/2015/09/09/16/05/forest-931706_960_720.jpg", :border => 0, :alt => '', :title => ''), article_path(article), :class => 'image' %>
-        <p class="title"><%= article.title %></p>
-        <p class="author"><%= article.author %></p>
-        <p class="text"><%= article.text %></p>
-        <p class="created_at"><%= article.created_at %></p>
-        <div class="button_container">
-          <%= link_to "Show", article_path(article), :class => "show_button" %>
-          <%= link_to "Edit", edit_article_path(article), :class => "edit_button"  %>
-          <%= link_to "Destroy", article_path(article), method: :delete, data: {confirm: "Are you sure?" }, :class => "destroy_button"  %>
+
+      <div class="article_headers">
+        <h2 class="header_title"><%= article.title %></h1>
+        <div class="header_info">
+          <p class="header_date"><%= article.created_at %></p>
+          <p class="header_divider"> | </p>
+          <p class="header_user"><%= article.author %></p>
         </div>
       </div>
+
+      <%= link_to image_tag("https://cdn.pixabay.com/photo/2015/09/09/16/05/forest-931706_960_720.jpg", :border => 0, :alt => '', :title => ''), article_path(article), :class => 'article_image' %>
+
+      <div class="article_focus">
+        <p class="text"><%= article.text %></p>
+      </div>
+
+      <div class="button_container">
+        <%= link_to "Show", article_path(article), :class => "show_button" %>
+        <%= link_to "Edit", edit_article_path(article), :class => "edit_button"  %>
+        <%= link_to "Destroy", article_path(article), method: :delete, data: {confirm: "Are you sure?" }, :class => "destroy_button"  %>
+      </div>
+        
     <% end %>
   </div>
+  
 </section>
